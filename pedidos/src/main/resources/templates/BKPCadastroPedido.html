@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+
+<head>
+	<title>Cadastro de Pedidos</title>
+</head>
+
+ <section layout:fragment="conteudo">
+	<form class="form-horizontal" method="POST" action="/pedidos">
+		<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">		
+			<button type="button" class="close" data-dismiss="alert"></button>
+			<span th:text="${mensagem}"></span>		
+		</div>
+	
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="clearfix">
+					<h1 class="panel-title cr-pedido-panel">Novo Pedido</h1>
+					<a class="btn btn-link cr-link-panel" href="/pedidos">Voltar para pesquisa</a>					
+				</div>
+			</div>
+		
+
+
+			<div class="panel-body">
+
+				<div class="form-group">
+					<label for="nomeCliente" class="col-sm-2 control-label">Nome
+						do Cliente</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="nomeCliente"
+							name="nomeCliente" />
+					</div>
+					<label for="nomeBebe" class="col-sm-1 control-label">Bebê</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="nomeBebe"
+							name="nomeBebe" />
+					</div>
+				</div>
+
+				<div class="form-group">
+						<label for="dataPedido" class="col-sm-2 control-label">Data
+							do Pedido</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" id="dataPedido" name="dataPedido"/>
+						</div>
+
+						<label for="dataEntrega" class="col-sm-1 control-label">Data
+							da Entrega</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" id="dataEntrega" name="dataEntrega"/>
+						</div>
+
+						<label for="origemPedido" class="col-sm-1 control-label">Origem</label>
+						<div class="col-sm-2">
+							<select class="form-control" name="origem">
+								<option value="LOJA">Loja</option>
+								<option value="INSTAGRAM">Instagram</option>
+								<option value="WHATSAPP">WhatsApp</option>
+							</select>
+						</div>
+
+				</div>
+
+					<div class="form-group">
+						<label for="descProduto" class="col-sm-2 control-label">Descrição
+							do Produto</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="descProduto"
+								name="descProduto" />
+						</div>
+						
+						<label for="valorTotal" class="col-sm-2 control-label">Valor
+							do Produto/Serviço</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" id="valorTotal" 
+								name="valorTotal" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="obsPagamento" class="col-sm-2 control-label">Observações
+							(Pagamento)</label>
+						<div class="col-sm-4">
+							<textarea class="form-control" id="obsPagamento" rows="3" name="obsPagamento"></textarea>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="obsPedido" class="col-sm-2 control-label">Observações
+							(Pedido)</label>
+						<div class="col-sm-4">
+							<textarea class="form-control" id="obsPedido" rows="3" name="obsPedido"></textarea>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="status" class="col-sm-2 control-label">Status</label>
+						<div class="col-sm-2">
+							<select class="form-control" name="status">
+								<option th:each="status : ${todosStatusPedido}" th:value="${status}" th:text="${status.descricao}"></option>								
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-primary">Salvar
+								Pedido</button>
+						</div>
+					</div>
+
+				</div>
+				
+			</div>
+	</form>
+</section>
+</html>

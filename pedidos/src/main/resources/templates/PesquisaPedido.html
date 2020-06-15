@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+
+<head>
+	<title>Pesquisa de Pedidos</title>
+</head>
+
+<section layout:fragment="conteudo">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		<div class="clearfix">
+				<h1 class="panel-title cr-pedido-panel">Pesquisa de Pedidos</h1>
+				<a class="btn btn-link cr-link-panel" href="/pedidos/novo">Novo Pedido</a>
+			</div>
+		</div>
+	
+		<div class="panel-body">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th class="text-center col-md-1">#</th>
+						<th>Descrição do Produto</th>
+						<th class="text-center col-md-2">Data de Pedido</th>
+						<th class="text-center col-md-2">Data de Entrega</th>
+						<th class="text-right col-md-2">Valor</th>
+						<th class="text-center col-md-2">Status</th>
+						<th class="col-md-1"></th>
+					</tr>
+				</thead>
+	
+				<tbody>
+					<tr th:each="pedido : ${pedidos}">
+						<td class="text-center" th:text="${pedido.codigo}">1</td>
+						<td th:text="${pedido.descProduto}"></td>
+						<td class="text-center" th:text="${{pedido.dataPedido}}"></td>
+						<td class="text-center" th:text="${{pedido.dataEntrega}}"></td>
+						<td class="text-right" th:text="|R$ ${{pedido.valorTotal}}|"></td>
+						<td class="text-center">
+							<span class="label" th:text="${pedido.status.descricao}"
+								th:classappend="
+								  (${#strings.toString(pedido.status)} == 'PENDENTE' ? 'label-warning' 
+								: (${#strings.toString(pedido.status)} == 'CANCELADO' ? 'label-danger' 
+								: (${#strings.toString(pedido.status)} == 'ENTREGUE' ? 'label-success')))"></span>
+						</td>
+						<td class="text-center"> 
+					</tr>
+					
+					<tr>
+						<td colspan="6" th:if="${#lists.isEmpty(pedidos)}">Nenhum pedido foi encontrado</td>
+					</tr>
+					
+				</tbody>
+	
+			</table>
+		</div>
+	</div>
+</section>
+</html>

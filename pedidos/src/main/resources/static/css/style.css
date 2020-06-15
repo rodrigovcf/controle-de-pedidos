@@ -1,0 +1,27 @@
+.navbar-brand{
+	padding-top: 10px;
+}
+
+.container-fluid{
+	height: 70px;
+}
+
+.panel-default{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.alert{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.cr-link-panel{
+	float: right;
+	padding: 0px;
+	
+}
+
+.cr-pedido-panel{
+	float:left;
+}

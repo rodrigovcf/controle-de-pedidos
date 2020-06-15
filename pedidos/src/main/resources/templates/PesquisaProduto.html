@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+
+<head>
+	<title>Pesquisa de Produtos</title>
+</head>
+
+<section layout:fragment="conteudo">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		<div class="clearfix">
+				<h1 class="panel-title cr-pedido-panel">Pesquisa de Produtos</h1>
+				<a class="btn btn-link cr-link-panel" href="/produtos/novo">Novo Produto</a>
+			</div>
+		</div>
+	
+		<div class="panel-body">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th class="text-center col-md-1">#</th>
+						<th>Descrição do Produto</th>						
+						<th class="text-right col-md-2">Valor</th>						
+						<th class="col-md-1"></th>
+					</tr>
+				</thead>
+	
+				<tbody>
+					<tr th:each="produto : ${produtos}">
+						<td class="text-center" th:text="${produto.codigo}">1</td>
+						<td th:text="${produto.nomeProdServ}"></td>
+						<td class="text-right" th:text="${{produto.valorProduto}}"></td>						
+						<td class="text-center"> 
+					</tr>
+					
+					<tr>
+						<td colspan="6" th:if="${#lists.isEmpty(produtos)}">Nenhum produto foi encontrado</td>
+					</tr>
+					
+				</tbody>
+	
+			</table>
+		</div>
+	</div>
+</section>
+</html>
